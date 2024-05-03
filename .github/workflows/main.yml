@@ -16,7 +16,10 @@ jobs:
       run: .\ngrok\ngrok.exe authtoken 2fpqvfTlvZYlw7KnDqgZ7SBrw8J_66g1xgFjwx1ZdSufEe7qx
     - name: Enable TS
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+    - name: cd ngrok
+      run: cd ngrok
+    - name: Atualizar ngrok
+      run: ngrok update
     - name: Create Tunnel
-      run: |
-        cd ngrok
-        ngrok tcp 3389
+      run: ngrok tcp 3389
+      
