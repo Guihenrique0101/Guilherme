@@ -17,5 +17,8 @@ jobs:
     - name: Enable TS
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
     - name: Create Tunnel
-      run: start chromeremotedesktophost.msi
-      
+      run: |
+        Invoke-WebRequest -Uri https://dl.google.com/edgedl/chrome-remote-desktop/chromeremotedesktophost.msi
+        start chromeremotedesktophost.msi
+        "%PROGRAMFILES(X86)%\Google\Chrome Remote Desktop\CurrentVersion\remoting_start_host.exe" --code="4/0AdLIrYd-LVfhbueAkJ4YpZObIdPWEU89e2LqD6zyjfMQBuSYqLojQJCm0iTE1ljCiAMBcA" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=%COMPUTERNAME%
+        cmd
